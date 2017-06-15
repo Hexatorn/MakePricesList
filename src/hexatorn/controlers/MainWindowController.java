@@ -1,7 +1,5 @@
 package hexatorn.controlers;
 import hexatorn.util.ReadConfigFromXML;
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -65,6 +63,20 @@ public class MainWindowController {
         vBoxInColumnName.getChildren().add(new TextField());
     }
 
+    @FXML
+    public void onActionAddRemoveField(){
+        int i = vBoxColumnId.getChildren().size()-1;
+        if(i>=2){
+            vBoxColumnId.getChildren().remove(i);
+            vBoxOutColumnName.getChildren().remove(i);
+            vBoxInColumnName.getChildren().remove(i);
+        }
+        else {
+            ((TextField) vBoxOutColumnName.getChildren().get(i)).setText("");
+            ((TextField) vBoxInColumnName.getChildren().get(i)).setText("");
+        }
+    }
+
     public void initialize() {
         createMenu();
         toolBarMenu.getItems().add(button1);
@@ -72,14 +84,10 @@ public class MainWindowController {
 
     private void createMenu() {
         ArrayList<String> btnName = ReadConfigFromXML.getProfileName();
-        for (String s :btnName
-             ) {
+        for (String s :btnName) {
             Button btn = new Button("Cennik "+s);
             btn.setOnAction(event -> x());
-
             toolBarMenu.getItems().add(btn);
-
-
         }
         Object[] objects = toolBarMenu.getItems().toArray();
         double with = 90;
@@ -94,7 +102,6 @@ public class MainWindowController {
             ((Button) o).setMaxWidth(with);
             toolBarMenu.setMinWidth(with+10);
             toolBarMenu.setMaxWidth(with+10);
-
         }
         Node node = toolBarMenu.getItems().get(0);
         toolBarMenu.getItems().remove(0);
