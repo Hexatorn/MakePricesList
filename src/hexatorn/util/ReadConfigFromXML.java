@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,6 +25,46 @@ public class ReadConfigFromXML {
 
     private static Document doc = null;
 
+
+    public static Map<String, String> getConfigFieldsValue (String profileName){
+        Map<String, String> map = new TreeMap<>();
+
+        NodeList nodeList = doc.getElementsByTagName("Profile");
+        for (int i = 0; i < nodeList.getLength(); i++){
+            Node node = nodeList.item(i);
+            Element element = ((Element) node);
+            if (element.getElementsByTagName("ProfileName").item(0).getTextContent().equals(profileName)){
+                String value;
+                value = element.getElementsByTagName("ProfileName").item(0).getTextContent();
+                map.put("ProfileName",value);
+                value = element.getElementsByTagName("DefaultInputFilePath").item(0).getTextContent();
+                map.put("DefaultInputFilePath",value);
+                value = element.getElementsByTagName("InputNumberOfHeaderLines").item(0).getTextContent();
+                map.put("InputNumberOfHeaderLines",value);
+                /*
+                 * Wczytanie nazw kolumn dla pliku źródłowego
+                 */
+                for (int j = 0;; j++) {
+                    try {
+                        value = element.getElementsByTagName("InColIndex").item(j).getTextContent();
+                        map.put("InColIndex"+j,value);
+                        value = element.getElementsByTagName("InColName").item(j).getTextContent();
+                        map.put("InColName"+j,value);
+                    }
+                    catch (NullPointerException e){
+                        break; //koniec pętli forj
+                    }
+                }
+
+                break; //koniec pętli fori
+            }
+            else {
+                continue; //kolejne wykoanenie pętli fori
+            }
+        }
+        return map;
+    }
+
     public static ArrayList<String> getProfileName(){
         ArrayList<String> arrayList = new ArrayList<>();
         if (doc==null)
@@ -35,7 +77,6 @@ public class ReadConfigFromXML {
             arrayList.add(element.getElementsByTagName("ProfileName").item(0).getTextContent());
         }
         return arrayList;
-
     }
 
     private static void readXMLFile(){

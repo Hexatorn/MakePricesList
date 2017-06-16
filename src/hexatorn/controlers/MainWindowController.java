@@ -29,30 +29,22 @@ public class MainWindowController {
     private VBox vBoxInColumnName;
     @FXML
     private ScrollPane scrolPane;
-
-
+    @FXML
+    private TextField  tfProfilName;
+    @FXML
+    private TextField  tfFilePath;
+    @FXML
+    private TextField  tfSeparator;
     @FXML
     private BorderPane filePane1;
-
-    /**Test**/
-    private Button button1 = new Button("test");
-
-    public void y(){
-        button1.setOnAction(event -> x());
-    }
-
-    private void x(){
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Warning Alert");
-        alert.setHeaderText("Błąd odczytu pliku konfiguracyjknego.");
-        alert.showAndWait();
-    }
-    /**Koniec Testu**/
-
-
     @FXML
     private VBox vBoxtest;
 
+    private void fillTextField(String s){
+
+        tfProfilName.setText(s);
+        System.out.println(ReadConfigFromXML.getConfigFieldsValue(s));
+    }
     @FXML
     public void onActionAddNewField(){
         int i = vBoxColumnId.getChildren().size();
@@ -76,17 +68,15 @@ public class MainWindowController {
             ((TextField) vBoxInColumnName.getChildren().get(i)).setText("");
         }
     }
-
     public void initialize() {
         createMenu();
-        toolBarMenu.getItems().add(button1);
+        System.out.println(ReadConfigFromXML.getConfigFieldsValue("UK"));
     }
-
     private void createMenu() {
         ArrayList<String> btnName = ReadConfigFromXML.getProfileName();
         for (String s :btnName) {
             Button btn = new Button("Cennik "+s);
-            btn.setOnAction(event -> x());
+            btn.setOnAction(event -> fillTextField(s));
             toolBarMenu.getItems().add(btn);
         }
         Object[] objects = toolBarMenu.getItems().toArray();

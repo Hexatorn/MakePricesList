@@ -22,13 +22,13 @@
                   </padding>
                   <Label contentDisplay="RIGHT" graphicTextGap="15.0" nodeOrientation="LEFT_TO_RIGHT" text="Nazwa Profilu">
                      <graphic>
-                        <TextField />
+                        <TextField fx:id="tfProfilName" />
                      </graphic>
                   </Label>
                   <HBox prefHeight="25.0" prefWidth="200.0" spacing="10.0">
                      <Label contentDisplay="RIGHT" graphicTextGap="17.0" text="Plik źródłowy">
                         <graphic>
-                           <TextField nodeOrientation="LEFT_TO_RIGHT" />
+                           <TextField fx:id="tfFilePath" nodeOrientation="LEFT_TO_RIGHT" />
                         </graphic>
                      </Label>
                      <Button mnemonicParsing="false" text="Wybierz..." />
@@ -36,7 +36,7 @@
                   <HBox prefHeight="25.0" prefWidth="200.0" spacing="10.0">
                      <Label contentDisplay="RIGHT" graphicTextGap="5.0" text="Ilość Wierszy nagłówkowych">
                         <graphic>
-                           <TextField prefWidth="30.0" />
+                           <TextField fx:id="tfSeparator" prefWidth="30.0" />
                         </graphic>
                         <HBox.margin>
                            <Insets />
