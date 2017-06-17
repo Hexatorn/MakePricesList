@@ -63,14 +63,14 @@
                                        <Insets left="3.0" right="3.0" />
                                     </padding>
                                     <Label text="Nazwa kolumny w pliku wynikowym" />
-                                    <TextField prefHeight="25.0" prefWidth="10.0" />
+                                    <TextField prefHeight="25.0" prefWidth="10.0" text="Puste" />
                                  </VBox>
                                  <VBox fx:id="vBoxInColumnName" prefHeight="90.0" prefWidth="200.0">
                                     <padding>
                                        <Insets left="3.0" right="3.0" />
                                     </padding>
                                     <Label text="Nazwa kolumny w pliku źródłowym" />
-                                    <TextField />
+                                    <TextField text="Puste" />
                                  </VBox>
                               </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="423.0" spacing="5.0">
@@ -96,7 +96,7 @@
          <BorderPane fx:id="menuPane" prefHeight="400.0" prefWidth="125.0" BorderPane.alignment="CENTER">
             <center>
                <ToolBar fx:id="toolBarMenu" accessibleRole="BUTTON" nodeOrientation="LEFT_TO_RIGHT" orientation="VERTICAL" prefHeight="400.0" prefWidth="129.0" BorderPane.alignment="CENTER">
-                  <Button mnemonicParsing="false" text="Ustawienia" />
+                  <Button mnemonicParsing="false" onAction="#onActionClearField" text="Dodaj Profil" />
                </ToolBar>
             </center>
          </BorderPane>

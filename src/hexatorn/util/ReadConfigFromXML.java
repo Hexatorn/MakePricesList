@@ -58,9 +58,6 @@ public class ReadConfigFromXML {
 
                 break; //koniec pętli fori
             }
-            else {
-                continue; //kolejne wykoanenie pętli fori
-            }
         }
         return map;
     }

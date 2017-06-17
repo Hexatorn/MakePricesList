@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class MainWindowController {
 
@@ -14,7 +15,6 @@ public class MainWindowController {
 
     @FXML
     private ToolBar toolBarMenu;
-
     @FXML
     private BorderPane centerPane;
     @FXML
@@ -37,12 +37,57 @@ public class MainWindowController {
     private TextField  tfSeparator;
     @FXML
     private BorderPane filePane1;
+
     @FXML
-    private VBox vBoxtest;
+    private void onActionClearField(){
+        tfProfilName.setText(null);
+        tfFilePath.setText(null);
+        tfSeparator.setText(null);
+        for (int i = 2;; i++) {
+            try{
+                vBoxInColumnName.getChildren().remove(2);
+                vBoxOutColumnName.getChildren().remove(2);
+                vBoxColumnId.getChildren().remove(2);
+            }
+            catch (IndexOutOfBoundsException e){
+                ((TextField) vBoxInColumnName.getChildren().get(1)).setText(null);
+                ((TextField) vBoxOutColumnName.getChildren().get(1)).setText(null);
+                break;
+            }
+        }
+    }
+
 
     private void fillTextField(String s){
+        Map<String,String> map = ReadConfigFromXML.getConfigFieldsValue(s);
+        tfProfilName.setText(map.get("ProfileName"));
+        tfFilePath.setText(map.get("DefaultInputFilePath"));
+        tfSeparator.setText(map.get("InputNumberOfHeaderLines"));
+        for (int i = 2;; i++) {
+            try{
+                vBoxInColumnName.getChildren().remove(2);
+                vBoxOutColumnName.getChildren().remove(2);
+                vBoxColumnId.getChildren().remove(2);
+            }
+            catch (IndexOutOfBoundsException e){
+                break;
+            }
+        }
+        for (int i = 1;; i++) {
+            Node node;
+            String s1,s2;
+            node = vBoxInColumnName.getChildren().get(i);
+            s1 = map.get("InColName"+i);
+            ((TextField) node).setText(s1);
+            node = vBoxOutColumnName.getChildren().get(i);
+            s2 = map.get("InColName"+i);
+            ((TextField) node).setText(s2);
+            if(s1==null&&s2==null){
+                break;
+            }
+            onActionAddNewField();
+        }
 
-        tfProfilName.setText(s);
         System.out.println(ReadConfigFromXML.getConfigFieldsValue(s));
     }
     @FXML
@@ -70,7 +115,6 @@ public class MainWindowController {
     }
     public void initialize() {
         createMenu();
-        System.out.println(ReadConfigFromXML.getConfigFieldsValue("UK"));
     }
     private void createMenu() {
         ArrayList<String> btnName = ReadConfigFromXML.getProfileName();
