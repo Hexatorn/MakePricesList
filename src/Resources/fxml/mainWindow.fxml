@@ -28,7 +28,7 @@
                   <HBox prefHeight="25.0" prefWidth="200.0" spacing="10.0">
                      <Label contentDisplay="RIGHT" graphicTextGap="17.0" text="Plik źródłowy">
                         <graphic>
-                           <TextField fx:id="tfFilePath" nodeOrientation="LEFT_TO_RIGHT" />
+                           <TextField fx:id="tfInFilePath" nodeOrientation="LEFT_TO_RIGHT" />
                         </graphic>
                      </Label>
                      <Button mnemonicParsing="false" text="Wybierz..." />
@@ -63,14 +63,14 @@
                                        <Insets left="3.0" right="3.0" />
                                     </padding>
                                     <Label text="Nazwa kolumny w pliku wynikowym" />
-                                    <TextField prefHeight="25.0" prefWidth="10.0" text="Puste" />
+                                    <TextField prefHeight="25.0" prefWidth="10.0" />
                                  </VBox>
                                  <VBox fx:id="vBoxInColumnName" prefHeight="90.0" prefWidth="200.0">
                                     <padding>
                                        <Insets left="3.0" right="3.0" />
                                     </padding>
                                     <Label text="Nazwa kolumny w pliku źródłowym" />
-                                    <TextField text="Puste" />
+                                    <TextField />
                                  </VBox>
                               </HBox>
                               <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="423.0" spacing="5.0">
@@ -85,8 +85,20 @@
                      </center>
                   </BorderPane>
                   <HBox prefHeight="20.0" prefWidth="200.0" spacing="10.0">
-                     <Label contentDisplay="RIGHT" graphicTextGap="17.0" text="Plik Wynikowy" />
-                     <Button mnemonicParsing="false" text="Zapisz" />
+                     <Label contentDisplay="RIGHT" graphicTextGap="13.0" text="Plik Wynikowy">
+                        <graphic>
+                           <Button fx:id="onActionSave" mnemonicParsing="false" onAction="#onActionSave" text="Zapisz" />
+                        </graphic></Label>
+                  </HBox>
+                  <HBox prefHeight="25.0" prefWidth="200.0" spacing="5.0">
+                     <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="Domyślnie w">
+                        <graphic>
+                           <TextField fx:id="tfOutFilePath" />
+                        </graphic>
+                     </Label>
+                     <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                        <Button mnemonicParsing="false" text="Zapisz Profil" />
+                     </HBox>
                   </HBox>
                </VBox>
             </center>

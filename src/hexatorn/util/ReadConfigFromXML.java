@@ -1,21 +1,22 @@
 package hexatorn.util;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.ParserConfigurationException;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 
 /**
@@ -41,6 +42,8 @@ public class ReadConfigFromXML {
                 map.put("DefaultInputFilePath",value);
                 value = element.getElementsByTagName("InputNumberOfHeaderLines").item(0).getTextContent();
                 map.put("InputNumberOfHeaderLines",value);
+                value = element.getElementsByTagName("OutputDefaultFIlePath").item(0).getTextContent();
+                map.put("OutputDefaultFIlePath",value);
                 /*
                  * Wczytanie nazw kolumn dla pliku źródłowego
                  */
@@ -50,6 +53,10 @@ public class ReadConfigFromXML {
                         map.put("InColIndex"+j,value);
                         value = element.getElementsByTagName("InColName").item(j).getTextContent();
                         map.put("InColName"+j,value);
+                        value = element.getElementsByTagName("OuColIndex").item(j).getTextContent();
+                        map.put("OuColIndex"+j,value);
+                        value = element.getElementsByTagName("OuColName").item(j).getTextContent();
+                        map.put("OuColName"+j,value);
                     }
                     catch (NullPointerException e){
                         break; //koniec pętli forj
@@ -101,7 +108,6 @@ public class ReadConfigFromXML {
             alert.setTitle("Warning Alert");
             alert.setHeaderText("Błąd odczytu pliku konfiguracyjknego.");
             alert.setContentText(""+e.getMessage());
-            alert.showAndWait();
             alert.showAndWait();
             e.printStackTrace();
         } catch (SAXException e) {

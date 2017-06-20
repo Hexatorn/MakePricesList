@@ -1,5 +1,6 @@
 package hexatorn.controlers;
 import hexatorn.util.ReadConfigFromXML;
+import hexatorn.util.ReadXLSXFile;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -8,10 +9,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class MainWindowController {
-
-    public MainWindowController(){
-
-    }
 
     @FXML
     private ToolBar toolBarMenu;
@@ -32,16 +29,30 @@ public class MainWindowController {
     @FXML
     private TextField  tfProfilName;
     @FXML
-    private TextField  tfFilePath;
+    private TextField tfInFilePath;
+    @FXML
+    private TextField tfOutFilePath;
     @FXML
     private TextField  tfSeparator;
     @FXML
     private BorderPane filePane1;
 
+    public MainWindowController(){
+
+    }
+
+    @FXML
+    private void onActionSave(){
+        System.out.println("click");
+        ReadXLSXFile.test();
+    }
+
+
     @FXML
     private void onActionClearField(){
         tfProfilName.setText(null);
-        tfFilePath.setText(null);
+        tfInFilePath.setText(null);
+        tfOutFilePath.setText(null);
         tfSeparator.setText(null);
         for (int i = 2;; i++) {
             try{
@@ -61,8 +72,9 @@ public class MainWindowController {
     private void fillTextField(String s){
         Map<String,String> map = ReadConfigFromXML.getConfigFieldsValue(s);
         tfProfilName.setText(map.get("ProfileName"));
-        tfFilePath.setText(map.get("DefaultInputFilePath"));
+        tfInFilePath.setText(map.get("DefaultInputFilePath"));
         tfSeparator.setText(map.get("InputNumberOfHeaderLines"));
+        tfOutFilePath.setText(map.get("OutputDefaultFIlePath"));
         for (int i = 2;; i++) {
             try{
                 vBoxInColumnName.getChildren().remove(2);
@@ -80,15 +92,13 @@ public class MainWindowController {
             s1 = map.get("InColName"+i);
             ((TextField) node).setText(s1);
             node = vBoxOutColumnName.getChildren().get(i);
-            s2 = map.get("InColName"+i);
+            s2 = map.get("OuColName"+i);
             ((TextField) node).setText(s2);
             if(s1==null&&s2==null){
                 break;
             }
             onActionAddNewField();
         }
-
-        System.out.println(ReadConfigFromXML.getConfigFieldsValue(s));
     }
     @FXML
     public void onActionAddNewField(){
