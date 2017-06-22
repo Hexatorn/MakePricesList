@@ -14,8 +14,6 @@ public class ReadXLSXFileTest {
 
     @Test
     public void test1() throws Exception {
-        ReadXLSXFile.readData();
-
 
     }
 

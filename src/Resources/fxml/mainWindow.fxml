@@ -36,7 +36,7 @@
                   <HBox prefHeight="25.0" prefWidth="200.0" spacing="10.0">
                      <Label contentDisplay="RIGHT" graphicTextGap="5.0" text="Ilość Wierszy nagłówkowych">
                         <graphic>
-                           <TextField fx:id="tfSeparator" prefWidth="30.0" />
+                           <TextField fx:id="tfHeadersLine" prefWidth="30.0" />
                         </graphic>
                         <HBox.margin>
                            <Insets />

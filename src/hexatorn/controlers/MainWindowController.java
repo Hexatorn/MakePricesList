@@ -36,7 +36,7 @@ public class MainWindowController {
     @FXML
     private TextField tfOutFilePath;
     @FXML
-    private TextField  tfSeparator;
+    private TextField  tfHeadersLine;
     @FXML
     private BorderPane filePane1;
 
@@ -48,11 +48,6 @@ public class MainWindowController {
     private void onActionSave(){
         System.out.println("click");
         ArrayList<String> arrayList = new ArrayList<>();
-        String tmp = "";
-
-/*        for (int i = 0; i < vBoxInColumnName.getChildren().size() ; i++) {
-            System.out.println(i);
-        }*/
         boolean firstElement = true;
         for (Node node : vBoxInColumnName.getChildren()) {
             if (firstElement){ //pominiecie pierwszego element - label
@@ -63,8 +58,9 @@ public class MainWindowController {
             else
                 arrayList.add(((TextField) node).getText());
         }
-        ReadXLSXFile.readHeaders(arrayList);
-        //ReadXLSXFile.readData();
+        String sHeadersLine = tfHeadersLine.getText();
+        int iHeadersLine = Integer.parseInt(sHeadersLine);
+        ReadXLSXFile.readData(arrayList, iHeadersLine);
     }
 
 
@@ -73,7 +69,7 @@ public class MainWindowController {
         tfProfilName.setText(null);
         tfInFilePath.setText(null);
         tfOutFilePath.setText(null);
-        tfSeparator.setText(null);
+        tfHeadersLine.setText(null);
         for (int i = 2;; i++) {
             try{
                 vBoxInColumnName.getChildren().remove(2);
@@ -93,7 +89,7 @@ public class MainWindowController {
         Map<String,String> map = ReadConfigFromXML.getConfigFieldsValue(s);
         tfProfilName.setText(map.get("ProfileName"));
         tfInFilePath.setText(map.get("DefaultInputFilePath"));
-        tfSeparator.setText(map.get("InputNumberOfHeaderLines"));
+        tfHeadersLine.setText(map.get("InputNumberOfHeaderLines"));
         tfOutFilePath.setText(map.get("OutputDefaultFIlePath"));
         for (int i = 2;; i++) {
             try{
