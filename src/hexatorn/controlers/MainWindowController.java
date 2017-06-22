@@ -1,10 +1,13 @@
 package hexatorn.controlers;
+
 import hexatorn.util.ReadConfigFromXML;
 import hexatorn.util.ReadXLSXFile;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -44,7 +47,24 @@ public class MainWindowController {
     @FXML
     private void onActionSave(){
         System.out.println("click");
-        ReadXLSXFile.test();
+        ArrayList<String> arrayList = new ArrayList<>();
+        String tmp = "";
+
+/*        for (int i = 0; i < vBoxInColumnName.getChildren().size() ; i++) {
+            System.out.println(i);
+        }*/
+        boolean firstElement = true;
+        for (Node node : vBoxInColumnName.getChildren()) {
+            if (firstElement){ //pominiecie pierwszego element - label
+                firstElement = false;
+                continue;
+            }else if(((TextField) node).getText() == null)
+                break;
+            else
+                arrayList.add(((TextField) node).getText());
+        }
+        ReadXLSXFile.readHeaders(arrayList);
+        //ReadXLSXFile.readData();
     }
 
 
@@ -85,13 +105,13 @@ public class MainWindowController {
                 break;
             }
         }
-        for (int i = 1;; i++) {
+        for (int i = 0;; i++) {
             Node node;
             String s1,s2;
-            node = vBoxInColumnName.getChildren().get(i);
+            node = vBoxInColumnName.getChildren().get(i+1);
             s1 = map.get("InColName"+i);
             ((TextField) node).setText(s1);
-            node = vBoxOutColumnName.getChildren().get(i);
+            node = vBoxOutColumnName.getChildren().get(i+1);
             s2 = map.get("OuColName"+i);
             ((TextField) node).setText(s2);
             if(s1==null&&s2==null){

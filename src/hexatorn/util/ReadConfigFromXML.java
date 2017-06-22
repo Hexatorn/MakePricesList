@@ -7,7 +7,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -29,6 +28,7 @@ public class ReadConfigFromXML {
 
     public static Map<String, String> getConfigFieldsValue (String profileName){
         Map<String, String> map = new TreeMap<>();
+        readXMLFile();
 
         NodeList nodeList = doc.getElementsByTagName("Profile");
         for (int i = 0; i < nodeList.getLength(); i++){
@@ -49,12 +49,8 @@ public class ReadConfigFromXML {
                  */
                 for (int j = 0;; j++) {
                     try {
-                        value = element.getElementsByTagName("InColIndex").item(j).getTextContent();
-                        map.put("InColIndex"+j,value);
                         value = element.getElementsByTagName("InColName").item(j).getTextContent();
                         map.put("InColName"+j,value);
-                        value = element.getElementsByTagName("OuColIndex").item(j).getTextContent();
-                        map.put("OuColIndex"+j,value);
                         value = element.getElementsByTagName("OuColName").item(j).getTextContent();
                         map.put("OuColName"+j,value);
                     }
