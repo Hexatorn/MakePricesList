@@ -3,9 +3,11 @@ package hexatorn.controlers;
 import hexatorn.util.ReadConfigFromXML;
 import hexatorn.util.WriteXLSX;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -39,9 +41,57 @@ public class MainWindowController {
     private TextField  tfHeadersLine;
     @FXML
     private BorderPane filePane1;
+    @FXML
+    private VBox vBoxSourceFiles;
+    @FXML
+    private VBox vBoxSourceFile;
+    @FXML
+    private HBox hBoxBtnAddAndRemoveFilrSource;
 
     public MainWindowController(){
 
+    }
+
+    @FXML
+    private void onActionAddSourceFileField(){
+        int fileIndex = vBoxSourceFiles.getChildren().size();
+        System.out.println("+");
+        VBox newVBox = new VBox();
+        HBox newHBoxFillName = new HBox();
+        newHBoxFillName.setSpacing(10);
+        newHBoxFillName.setPadding(new Insets(5,5,5,5));
+        HBox newHBoxExcelOrTxt = new HBox();
+        newHBoxExcelOrTxt.setSpacing(10);
+        newHBoxExcelOrTxt.setPadding(new Insets(0,5,5,5));
+        Label newSourceFileLabel = new Label("Plik źródłowy nr. "+fileIndex);
+        newSourceFileLabel.setGraphic(new TextField());
+        newSourceFileLabel.setContentDisplay(ContentDisplay.RIGHT);
+        Button newButton = new Button("Wybierz...");
+        ToggleGroup newToggleGroup = new ToggleGroup();
+        RadioButton newRadioButtonExcel = new RadioButton("excel");
+        newRadioButtonExcel.setToggleGroup(newToggleGroup);
+        newRadioButtonExcel.setPadding(new Insets(4,0,0,0));
+        RadioButton newRadioButtonTxt = new RadioButton("txt");
+        newRadioButtonTxt.setToggleGroup(newToggleGroup);
+        newRadioButtonTxt.setPadding(new Insets(4,0,0,0));
+        Label newLabelHeaderOrSeparator = new Label("headers or separator");
+        TextField newTextField = new TextField();
+        newTextField.setMaxWidth(30);
+        newLabelHeaderOrSeparator.setGraphic(newTextField);
+        newLabelHeaderOrSeparator.setContentDisplay(ContentDisplay.RIGHT);
+        newLabelHeaderOrSeparator.setDisable(true);
+
+        newHBoxFillName.getChildren().addAll(newSourceFileLabel,newButton);
+        newHBoxExcelOrTxt.getChildren().addAll(newRadioButtonExcel,newRadioButtonTxt,newLabelHeaderOrSeparator);
+        newVBox.getChildren().addAll(newHBoxFillName,newHBoxExcelOrTxt);
+        vBoxSourceFiles.getChildren().remove(hBoxBtnAddAndRemoveFilrSource);
+        vBoxSourceFiles.getChildren().add(newVBox);
+        vBoxSourceFiles.getChildren().add(hBoxBtnAddAndRemoveFilrSource);
+    }
+
+    @FXML
+    private void onActionRemoveSourceFileField(){
+        System.out.println("-");
     }
 
     @FXML

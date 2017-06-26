@@ -38,108 +38,98 @@
                         <TextField fx:id="tfProfilName" />
                      </graphic>
                   </Label>
-                  <SplitPane dividerPositions="0.4296028880866426" orientation="VERTICAL" prefHeight="504.0"
-                             prefWidth="455.0">
+                  <SplitPane dividerPositions="0.4296028880866426" orientation="VERTICAL" prefHeight="504.0" prefWidth="455.0">
                      <AnchorPane minHeight="0.0" minWidth="0.0">
-                        <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <AnchorPane minHeight="0.0" minWidth="0.0">
-                              <VBox>
-                                 <VBox>
+                              <VBox fx:id="vBoxSourceFiles">
+                                 <VBox fx:id="vBoxSourceFile">
                                     <HBox spacing="10.0">
                                        <padding>
-                                          <Insets left="5.0" right="5.0" top="5.0"/>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                        </padding>
-                                       <Label contentDisplay="RIGHT" graphicTextGap="5.0"
-                                              text="Plik źródłowy">
+                                       <Label contentDisplay="RIGHT" graphicTextGap="0.0" text="Plik źródłowy nr. 1 ">
                                           <graphic>
-                                             <TextField fx:id="tfInFilePath"
-                                                        nodeOrientation="LEFT_TO_RIGHT"/>
+                                             <TextField fx:id="tfInFilePath" nodeOrientation="LEFT_TO_RIGHT" text="test" />
                                           </graphic>
                                           <HBox.margin>
-                                             <Insets left="5.0"/>
+                                             <Insets />
                                           </HBox.margin>
                                        </Label>
-                                       <Button mnemonicParsing="false" text="Wybierz..."/>
+                                       <Button mnemonicParsing="false" text="Wybierz..." />
                                     </HBox>
                                     <HBox spacing="10.0">
                                        <padding>
-                                          <Insets bottom="5.0" left="5.0" right="5.0"/>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" />
                                        </padding>
-                                       <RadioButton fx:id="radioBtnExcelFile1" mnemonicParsing="false"
-                                                    text="excel">
+                                       <RadioButton fx:id="radioBtnExcelFile1" mnemonicParsing="false" text="excel">
                                           <HBox.margin>
-                                             <Insets left="5.0" top="4.0"/>
+                                             <Insets top="4.0" />
                                           </HBox.margin>
                                           <toggleGroup>
-                                             <ToggleGroup fx:id="ToogleGroupFile1"/>
+                                             <ToggleGroup fx:id="ToogleGroupFile1" />
                                           </toggleGroup>
                                        </RadioButton>
-                                       <RadioButton fx:id="radioBtnTxtFile1" mnemonicParsing="false"
-                                                    text="txt" toggleGroup="$ToogleGroupFile1">
+                                       <RadioButton fx:id="radioBtnTxtFile1" mnemonicParsing="false" text="txt" toggleGroup="$ToogleGroupFile1">
                                           <HBox.margin>
-                                             <Insets top="4.0"/>
+                                             <Insets top="4.0" />
                                           </HBox.margin>
                                        </RadioButton>
-                                       <Label contentDisplay="RIGHT" disable="true"
-                                              graphicTextGap="5.0" text="headers or separator">
+                                       <Label contentDisplay="RIGHT" disable="true" graphicTextGap="5.0" text="headers or separator">
                                           <graphic>
-                                             <TextField fx:id="tfHeadersLine" prefWidth="30.0"/>
+                                             <TextField fx:id="tfHeadersLine" prefWidth="30.0" />
                                           </graphic>
                                        </Label>
                                     </HBox>
-                                    <HBox spacing="5.0">
-                                       <padding>
-                                          <Insets left="5.0"/>
-                                       </padding>
-                                       <Button mnemonicParsing="false" prefHeight="25.0"
-                                               prefWidth="25.0" text="+"/>
-                                       <Button mnemonicParsing="false" prefHeight="25.0"
-                                               prefWidth="25.0" text="-"/>
-                                    </HBox>
                                  </VBox>
+                                 <HBox fx:id="hBoxBtnAddAndRemoveFilrSource" spacing="5.0">
+                                    <padding>
+                                       <Insets left="5.0" />
+                                    </padding>
+                                    <Button mnemonicParsing="false" onAction="#onActionAddSourceFileField" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                    <Button mnemonicParsing="false" onAction="#onActionRemoveSourceFileField" prefHeight="25.0" prefWidth="25.0" text="-" />
+                                    <VBox.margin>
+                                       <Insets bottom="5.0" top="5.0" />
+                                    </VBox.margin>
+                                 </HBox>
                               </VBox>
                            </AnchorPane>
                         </ScrollPane>
                      </AnchorPane>
                      <AnchorPane minHeight="0.0" minWidth="0.0">
-                        <ScrollPane fx:id="scrolPane" prefHeight="200.0" prefWidth="453.0"
-                                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <ScrollPane fx:id="scrolPane" prefHeight="200.0" prefWidth="453.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <VBox>
                               <HBox>
                                  <padding>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                                  </padding>
                                  <VBox fx:id="vBoxColumnId">
-                                    <Label text="Id:"/>
-                                    <Label prefHeight="25.0" text="1:"/>
+                                    <Label text="Id:" />
+                                    <Label prefHeight="25.0" text="1:" />
                                  </VBox>
                                  <VBox fx:id="vBoxOutColumnName">
                                     <padding>
-                                       <Insets left="3.0" right="3.0"/>
+                                       <Insets left="3.0" right="3.0" />
                                     </padding>
-                                    <Label text="Nazwa kolumny w pliku wynikowym"/>
-                                    <TextField prefHeight="25.0" prefWidth="10.0"/>
+                                    <Label text="Nazwa kolumny w pliku wynikowym" />
+                                    <TextField prefHeight="25.0" prefWidth="10.0" />
                                  </VBox>
                                  <VBox fx:id="vBoxInColumnName">
                                     <padding>
-                                       <Insets left="3.0" right="3.0"/>
+                                       <Insets left="3.0" right="3.0" />
                                     </padding>
-                                    <Label text="Nazwa kolumny w pliku źródłowym"/>
-                                    <TextField/>
+                                    <Label text="Nazwa kolumny w pliku źródłowym" />
+                                    <TextField />
                                  </VBox>
                               </HBox>
                               <HBox spacing="5.0">
                                  <padding>
-                                    <Insets left="5.0" right="5.0"/>
+                                    <Insets left="5.0" right="5.0" />
                                  </padding>
-                                 <Button mnemonicParsing="false" onAction="#onActionAddNewField" prefHeight="25.0"
-                                         prefWidth="25.0" text="+"/>
-                                 <Button mnemonicParsing="false" onAction="#onActionAddRemoveField" prefHeight="25.0"
-                                         prefWidth="25.0" text="-"/>
+                                 <Button mnemonicParsing="false" onAction="#onActionAddNewField" prefHeight="25.0" prefWidth="25.0" text="+" />
+                                 <Button mnemonicParsing="false" onAction="#onActionAddRemoveField" prefHeight="25.0" prefWidth="25.0" text="-" />
                               </HBox>
-                              <HBox maxHeight="5.0" minHeight="5.0"/>
+                              <HBox maxHeight="5.0" minHeight="5.0" />
                            </VBox>
                         </ScrollPane>
                      </AnchorPane>
