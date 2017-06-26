@@ -1,7 +1,7 @@
 package hexatorn.controlers;
 
 import hexatorn.util.ReadConfigFromXML;
-import hexatorn.util.ReadXLSXFile;
+import hexatorn.util.WriteXLSX;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -60,7 +60,9 @@ public class MainWindowController {
         }
         String sHeadersLine = tfHeadersLine.getText();
         int iHeadersLine = Integer.parseInt(sHeadersLine);
-        ReadXLSXFile.readData(arrayList, iHeadersLine);
+        /*ReadXLSXFile.readData(arrayList, iHeadersLine);
+        WriteXLSX.writeExcel();*/
+        WriteXLSX.writeExcel();
     }
 
 

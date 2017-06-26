@@ -109,7 +109,7 @@ public class ReadXLSXFile {
             fileInputStream = new FileInputStream(file);
             workbook = new HSSFWorkbook(fileInputStream);
         } catch (FileNotFoundException e) {
-            showFileNotFoundExceptionMessage(e);
+            showFileNotFoundExceptionMessageReadFile(e);
         } catch (IOException e) {
             showIOExceptionMessage(e);
         }

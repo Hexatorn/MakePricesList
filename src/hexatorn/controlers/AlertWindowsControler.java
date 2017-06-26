@@ -25,10 +25,17 @@ public class AlertWindowsControler {
         );
     }
 
-    public static void showFileNotFoundExceptionMessage (FileNotFoundException e){
+    public static void showFileNotFoundExceptionMessageReadFile (FileNotFoundException e){
         showMessage(
                 "Warning Alert FileNotFoundException",
                 "Błąd odczytu pliku danych. Nie odnaleziono pliku z danymi żródłowymi",
+                ""+e.getMessage()
+        );
+    }
+    public static void showFileNotFoundExceptionMessageSaveFile (FileNotFoundException e){
+        showMessage(
+                "Warning Alert FileNotFoundException",
+                "Błąd zapisu pliku danych.",
                 ""+e.getMessage()
         );
     }
